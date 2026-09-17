@@ -1,6 +1,6 @@
 # MCP-Based-Jira-Agent-End-to-End-Workflow
 
-### Working
+## Working
 
 The workflow starts when the user submits a request in natural language, such as “Create a Jira ticket for the login issue and assign it to Rahul.” The AI application understands the request, detects the intent, and extracts the required information such as the project, issue type, description, and assignee. The AI then uses the MCP client to discover and select the appropriate Jira MCP tool, such as `create_issue()` or `assign_issue()`. The MCP request passes through the MCP Gateway, where authentication, authorization, RBAC, validation, rate limiting, and audit logging can be applied. The request then reaches the Jira MCP Server, which exposes Jira operations as standardized MCP tools and internally communicates with Jira through the Jira REST API. Jira creates the ticket, assigns it to Rahul, and the ticket proceeds through its lifecycle—such as Open, Assigned, In Progress, Testing, Approval or Rejection, Resolved, and finally Closed. During the process, the MCP tools can perform actions such as updating the issue, adding comments, changing status, or checking the current ticket state. Once the workflow is complete, the system uses `get_issue()` to verify the final ticket status, assignee, and resolution. The result then travels back from Jira through the Jira MCP Server, MCP Gateway, and MCP Client to the AI application, which converts the structured result into a natural-language response and informs the user that the ticket has been completed.
 
